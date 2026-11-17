@@ -1,0 +1,84 @@
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, new_node, pos):
+
+
+        if pos == 1:
+            temp= self.head
+            while(temp.next!=self.head):
+                temp= temp.next
+            new_node.next=self.head
+            self.head = new_node
+            temp.next=self.head
+
+        else:
+            p=1
+            temp = self.head
+            while(p!=pos-1):
+                temp = temp.next
+                p+=1
+            new_node.next=temp.next
+            temp.next=new_node
+
+    def delete(self,value):
+            temp = self.head
+            if temp.data == value:
+                self.head =self.head.next
+                self.head.prev = None
+            else:
+                while(temp.data!=value and temp):
+                    temp = temp.next
+                    if temp == None :
+                        print("Value not Present ")
+                        return
+                temp.prev.next = temp.next
+                if temp.next:
+                    temp.next.prev= temp.prev
+                temp = None
+    
+    
+        
+
+    def display(self):
+        temp = self.head
+
+        while temp is not None:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+
+        print("None")
+
+
+ll = LinkedList()
+
+ll.insert(10, 1)
+ll.insert(20, 2)
+ll.insert(30, 3)
+ll.insert(40, 4)
+ll.insert(50, 5)
+
+
+print("Original list:")
+ll.display()
+
+ll.insert(25, 3)
+print("After insertion:")
+ll.display()
+
+ll.insert(50, 10)
+ll.insert(56, 4)
+ll.display()
+
+ll.delete(25)
+ll.display()
+
+
