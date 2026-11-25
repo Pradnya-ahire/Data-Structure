@@ -1,5 +1,4 @@
 #Binary search tree
-
 class Node:
     def __init__(self,val):
         self.data = val
